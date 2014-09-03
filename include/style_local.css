@@ -1,0 +1,15 @@
+div.row-fluid {
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+}
+
+div.partition-title {
+  text-align: center;
+  margin: 0px;
+}
+
+/* make font lighter - IJL */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+}
+

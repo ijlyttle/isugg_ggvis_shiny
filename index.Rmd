@@ -1,0 +1,5 @@
+---
+title: "Summertime with ggvis and shiny"
+author: "Alex Shum and Ian Lyttle"
+runtime: shiny
+---
