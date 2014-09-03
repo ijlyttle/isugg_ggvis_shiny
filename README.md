@@ -2,4 +2,4 @@
 
 A collection of ggvis and shiny anecdotes.
 
-Address for shinyapps hosting.
+Live website: https://ijlyttle.shinyapps.io/isugg_ggvis_shiny/
