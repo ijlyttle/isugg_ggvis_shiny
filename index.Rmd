@@ -3,3 +3,20 @@ title: "Summertime with ggvis and shiny"
 author: "Alex Shum and Ian Lyttle"
 runtime: shiny
 ---
+
+## Some ideas
+
+* use of piping in ggvis (as an introduction)
+* `layer_images` as a replacement for `geom_raster`
+* how to include css in your Rmd website
+* using shiny runtime vs using simple html documents
+* reactive form vs. Winston form
+* date-times on axes
+* axes and legend titles not reactive
+* using an intermediate form as a workaround to non-standard evaluation
+* using the intermediate form to flip axes on a histogram
+* shiny widgets 
+* `on_click`, `on_hover`
+* there's something about subapps (only one level), ggvis sizing issues
+* using a `NULL` data.frame as an input to ggvis
+* don't use more than a few thousand geometries (yet)
