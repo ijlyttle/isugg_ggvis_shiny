@@ -1,0 +1,34 @@
+---
+title: "layer_images"
+runtime: shiny
+---
+
+For one of the apps that we made, we wanted to be able to display images.
+
+What we wanted was the functionality of `ggplot2::geom_raster`.
+
+We started to use `ggvis::layer_rects`, displaying pixels as individiual rectangles, but we came across the limitation of "thousands of geometries".
+
+```{r message=FALSE, warning=FALSE}
+library(dpcDataSE) # github: SE-EEI/dpcDataSE
+library(dplyr)
+library(ggvis)
+```
+
+We have a dataframe, `df_intensity`
+
+```{r}
+df_intensity <- dpcDataSE::conf_room_bumper$df_intensity
+
+glimpse(df_intensity) # glimpse is a useful function
+```
+
+This is slow:
+
+```{r}
+df_intensity %>% 
+  filter(row == 3 & col == 5) %>%
+  ggvis(x = ~px - 1, x2 = ~px, y2 = ~py, y = ~py - 1) %>%
+  layer_rects(fillOpacity = ~intensity)
+```
+
