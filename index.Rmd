@@ -12,7 +12,7 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 
 ## Some ideas
 
-* use of piping in ggvis (as an introductin)
+* use of piping in ggvis (as an introduction)
 * using shiny runtime vs using simple html documents
 * reactive form vs. Winston form
 * axes and legend titles not reactive
