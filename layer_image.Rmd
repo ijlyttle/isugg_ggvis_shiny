@@ -13,6 +13,7 @@ We started to use `ggvis::layer_rects`, displaying pixels as individiual rectang
 library(dpcDataSE) # github: SE-EEI/dpcDataSE
 library(dplyr)
 library(ggvis)
+library(shiny)
 ```
 
 We have a dataframe, `df_intensity`
@@ -35,13 +36,12 @@ This is inefficient:
 ```{r}
 df_int <- df_intensity %>% 
   filter(row == 3 & col == 5) %>% # just one part of the image... 18000 pixels
-  transmute(
-    intensity = intensity,
+  transmute(                      # new dplyr verb, combines mutate and select
+    intensity = ifelse(intensity < 1, intensity, intensity * (1 - 1.e-8)),
     px = ((px - 1) %% npx) + 1, 
     py = ((py - 1) %% npy) + 1
-  ) # new dplyr verb
+  ) 
   
-
 glimpse(df_int)
 
 df_int %>%
@@ -58,7 +58,7 @@ df_int %>%
 This is a bit-of-a-hack, but displays **much** quicker:
 
 ```{r}
-df <- 
+df_img <- 
   data.frame(
     x = 0, 
     x2 = 128,
@@ -67,9 +67,10 @@ df <-
     url = "https://se-eei.github.io/dpcDataSE/inst/img/conf_room_bumper/img_grey/conf_room-000-003-005.jpg"  
   )
 
-df %>%
-  ggvis(x = ~x, x2 = ~x2, y = ~y, y2 = ~y2) %>%
-  layer_images(url := ~url) %>%
+gg_img <-
+df_img %>%
+  ggvis() %>%
+  layer_images(x = ~x, x2 = ~x2, y = ~y, y2 = ~y2, url := ~url) %>%
   scale_numeric("y", reverse = TRUE) %>%
   hide_axis("x") %>%
   hide_axis("y") %>%
@@ -79,9 +80,95 @@ df %>%
     keep_aspect = TRUE, 
     renderer = "canvas"
   ) 
+
+gg_img
 ```
 
-Here's where 
+So why would you want to plot an image?
+
+```{r}
+slider_sample <- sliderInput(
+  "nsample",
+  label = "Number of samples",
+  min = 1, 
+  max = 100, 
+  value = 30
+)
+
+slider_nbin <- sliderInput(
+  "nbin",
+  label = "Number of bins",
+  min = 1, 
+  max = 100, 
+  value = 30
+)
+button_resample <- actionButton(
+  "resample",
+  label = "Resample",
+  icon = icon("random")
+)
+```
+
+```{r}
+rct_df_sample <- reactive({
+  
+  input$resample
+  
+  if (is.null(input$nsample)) {
+    index_sample <- NULL
+  } else {
+    index_sample <- sample(nrow(df_int), input$nsample)
+  }
+ 
+  df_int[index_sample, ]
+
+})
+
+rct_binwidth <- reactive({
+  
+  if (is.null(input$nbin)) {
+    binwidth <- 1
+  } else {
+    binwidth <- 1/input$nbin
+  }
+  
+})
+
+gg_img_sample <- 
+  gg_img %>%
+  layer_points(
+    x = ~px + 0.5,
+    y = ~py + 0.5,
+    fill := "red", 
+    fillOpacity := 0.5,
+    stroke := "red", 
+    data = rct_df_sample
+  )
+  
+gg_hist <- 
+  rct_df_sample %>%
+  ggvis(x = ~intensity) %>%
+  layer_histograms(
+    binwidth = rct_binwidth,
+    fill := "red", 
+    fillOpacity := 0.5,
+    stroke := "red"
+  ) %>%
+  scale_numeric("x", domain = c(0, 1)) 
+```
+
+```{r, echo=FALSE}
+slider_sample
+slider_nbin
+button_resample
+```
+
+```{r, echo=FALSE, fig.height=2, fig.width=3}
+gg_img_sample
+gg_hist
+```
+
+
 
 
 
