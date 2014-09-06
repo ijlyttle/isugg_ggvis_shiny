@@ -29,3 +29,4 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 * using an intermediate form as a workaround to non-standard evaluation
 * using the intermediate form to flip axes on a histogram
 * don't use more than a few thousand geometries (yet)
+* shinyBS!

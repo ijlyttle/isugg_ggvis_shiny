@@ -23,12 +23,65 @@ df_intensity <- dpcDataSE::conf_room_bumper$df_intensity
 glimpse(df_intensity) # glimpse is a useful function
 ```
 
-This is slow:
+Let's set a few constants:
 
 ```{r}
-df_intensity %>% 
-  filter(row == 3 & col == 5) %>%
-  ggvis(x = ~px - 1, x2 = ~px, y2 = ~py, y = ~py - 1) %>%
-  layer_rects(fillOpacity = ~intensity)
+npx <- 128
+npy <- 144
 ```
+
+This is inefficient:
+
+```{r}
+df_int <- df_intensity %>% 
+  filter(row == 3 & col == 5) %>% # just one part of the image... 18000 pixels
+  transmute(
+    intensity = intensity,
+    px = ((px - 1) %% npx) + 1, 
+    py = ((py - 1) %% npy) + 1
+  ) # new dplyr verb
+  
+
+glimpse(df_int)
+
+df_int %>%
+  ggvis(x = ~px - 1, x2 = ~px, y2 = ~py, y = ~py - 1) %>%
+  layer_rects(fill = ~intensity, strokeOpacity := 0) %>%
+  scale_numeric("fill", domain = c(0, 1), range = c("black", "white")) %>%
+  scale_numeric("y", reverse = TRUE) %>%
+  hide_axis("x") %>%
+  hide_axis("y") %>%
+  hide_legend("fill") %>%
+  set_options(height = 288, width = 256)
+```
+
+This is a bit-of-a-hack, but displays **much** quicker:
+
+```{r}
+df <- 
+  data.frame(
+    x = 0, 
+    x2 = 128,
+    y = 144, 
+    y2 = 0,
+    url = "https://se-eei.github.io/dpcDataSE/inst/img/conf_room_bumper/img_grey/conf_room-000-003-005.jpg"  
+  )
+
+df %>%
+  ggvis(x = ~x, x2 = ~x2, y = ~y, y2 = ~y2) %>%
+  layer_images(url := ~url) %>%
+  scale_numeric("y", reverse = TRUE) %>%
+  hide_axis("x") %>%
+  hide_axis("y") %>%
+  set_options(
+    height = 288, 
+    width = 256, 
+    keep_aspect = TRUE, 
+    renderer = "canvas"
+  ) 
+```
+
+Here's where 
+
+
 
