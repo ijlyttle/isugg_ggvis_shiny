@@ -4,6 +4,7 @@ html_document:
     in_header: include/in_header.html  
     before_body: [
       include/navbar-open.html,
+      include/nav-temp.html,
       include/navbar-close.html
     ]
     after_body: include/footer.html
