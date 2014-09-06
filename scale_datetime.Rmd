@@ -1,0 +1,40 @@
+---
+title: "scale_datetime"
+runtime: shiny
+---
+
+```{r message=FALSE, warning=FALSE}
+library(lubridate)
+library(dplyr)
+library(ggvis)
+library(shiny)
+```
+  
+Let's take some time-series data:
+
+```{r}
+dtime <- seq(0, 29)*dhours(1)
+
+df <- data.frame(
+  instant = ymd("2014-09-10", tz = "America/Chicago") + dtime,
+  value = 50 + 20*sin(2*pi*dtime/dhours(30))
+)
+
+glimpse(df)
+```
+
+And plot it:
+
+```{r fig.width=4, fig.height=3}
+df %>%
+  ggvis(x =~ instant, y =~value) %>%
+  layer_points()
+```
+
+Change the time-zone on your computer. Go ahead, I'll wait. Now reload this page.
+
+Weird, huh?
+
+One possible fix (from the users' point-of-view) would be to be able to add a timezone arguement to `scale_datetime`.
+
+Of course, ggvis is still under development, and they have a lot of things to take care-of before adapting a lubridate-type interface to `scale_datetime`. So, just something to be aware of for now.
