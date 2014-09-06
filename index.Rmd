@@ -22,11 +22,11 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 
 ### Ian
 
-* `layer_images` as a replacement for `geom_raster` -done
+* DONE - `layer_images` as a replacement for `geom_raster`
 * how to include css in your Rmd website
 * using a `NULL` data.frame as an input to ggvis
-* date-times on axes
+* DONE - date-times on axes
 * using an intermediate form as a workaround to non-standard evaluation
 * using the intermediate form to flip axes on a histogram 
-* don't use more than a few thousand geometries (yet)
+* DONE - don't use more than a few thousand geometries (yet)
 * shinyBS!
