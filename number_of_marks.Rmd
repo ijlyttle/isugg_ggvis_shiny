@@ -3,8 +3,6 @@ title: "Number of marks"
 runtime: shiny
 ---
 
-
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(dpcDataSE) # github: SE-EEI/dpcDataSE
 library(dplyr)

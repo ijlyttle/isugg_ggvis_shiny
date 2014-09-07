@@ -1,0 +1,71 @@
+---
+title: "Intermediate Form"
+runtime: shiny
+---
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggvis)
+library(shiny)
+```
+
+You'll all have to forgive us as this summer we gave names to different ways of doing things, a patois of sorts. We're sure these are not the best names for this stuff, and it may have other names already, but bear with us.
+
+One of the things we wanted to do was to allow people to make scatter plots, but to choose the variables themselves.
+
+One way we found to make that easier was to treat the selection of the variables a little bit like a `compute_` transformation.
+
+Let's consider the mtcars dataset:
+
+```{r}
+select_x <- 
+  selectInput(
+    "xvar",
+    label = "X variable",
+    choices = names(mtcars)
+  )
+
+select_y <- 
+  selectInput(
+    "yvar",
+    label = "Y variable",
+    choices = names(mtcars)
+  )
+
+rct_df <- reactive({
+  
+  xvar_name <- "wt"
+  yvar_name <- "mpg"
+  
+  if (!is.null(input$xvar)){
+    xvar_name <- input$xvar
+  }
+  
+  if (!is.null(input$yvar)){
+    yvar_name <- input$yvar
+  }
+  
+  data.frame(
+    xvar_ = mtcars[, xvar_name], 
+    yvar_ = mtcars[, yvar_name]
+  )
+})
+
+reactive({
+  rct_df() %>%
+    ggvis(x =~ xvar_, y =~ yvar_) %>%
+    layer_points() %>%
+    add_axis("x", title = input$xvar) %>%
+    add_axis("y", title = input$yvar)
+}) %>% 
+  bind_shiny("gg_out")
+
+```
+
+```{r}
+select_x
+select_y
+ggvisOutput("gg_out")
+```
+
+
