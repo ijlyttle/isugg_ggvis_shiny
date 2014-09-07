@@ -1,5 +1,5 @@
 ---
-title: "Intermediate Form"
+title: "Intermediate Form - II"
 runtime: shiny
 ---
 
@@ -8,8 +8,6 @@ library(dplyr)
 library(ggvis)
 library(shiny)
 ```
-
-You'll all have to forgive us as this summer we gave names to different ways of doing things, a patois of sorts. We're sure these are not the best names for this stuff, and it may have other names already, but bear with us.
 
 One of the things we wanted to do was to allow people to make scatter plots, but to choose the variables themselves.
 
@@ -59,7 +57,6 @@ reactive({
     add_axis("y", title = input$yvar)
 }) %>% 
   bind_shiny("gg_out")
-
 ```
 
 ```{r}

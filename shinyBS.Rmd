@@ -1,0 +1,105 @@
+---
+title: "shinyBS"
+runtime: shiny
+---
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggvis)
+library(shiny)
+library(shinyBS)
+```
+
+This is a really neat package to augment your shiny app using bootstrap. As Alex points out, it's got a great name.
+
+Here a demo; it's available from CRAN or GitHub, but the GitHub version has the modal windows.
+
+```{r eval=FALSE}
+devtools::install_github("ebailey78/shinyBS")
+```
+
+Here's a live demo: (http://spark.rstudio.com/johnharrison/shinyBS-Demo/)
+
+To get this to work in the shiny-Rmd environment, I had to make an adjustment. However, this adjustment removes the dependency on the shiny backend.
+
+```{r}
+button_modal <-function (id, idModal, class = "btn", icon = NULL, label = "") 
+{
+  tags$div(
+    align = "center", 
+    tags$button(
+      id = id, 
+      `data-toggle` = "modal", 
+      `data-target` = paste0("#", idModal), 
+      class = class, 
+      list(icon, label)
+    )
+  )
+}
+```
+
+```{r}
+button_modal(
+  "modal_button",
+  idModal = "modal_window",
+  label = "Help!",
+)
+
+bsModal(
+  "modal_window", 
+  title = "Help!",
+  trigger = "modal_button",
+  includeMarkdown(file.path("help/help.md"))
+)
+
+toggleModal(session, "modal_button")
+```
+
+Note that you can write your help documentation using markdown, then just read it in.
+
+You can also put shiny goodness in a modal window.
+
+```{r}
+select_color <- 
+  selectInput(
+    "color",
+    label = "Fill and stroke color",
+    choices = c("red", "green", "blue")
+  )
+
+rct_color <- reactive({
+
+  if (is.null(input$color)) return("black")
+  
+  input$color
+  
+})
+
+reactive({
+  mtcars %>%
+  ggvis(x = ~wt, y = ~mpg) %>%
+  layer_points(fill := rct_color, stroke := rct_color) 
+}) %>% 
+  bind_shiny("gg_cars")
+```
+
+```{r}
+button_modal(
+  "modal_button_shiny",
+  idModal = "modal_window_shiny",
+  label = "Moar Shiny!",
+)
+
+bsModal(
+  "modal_window_shiny", 
+  title = "Moar Shiny!",
+  trigger = "modal_button_shiny"
+)
+```
+
+```{r}
+select_color
+ggvisOutput("gg_cars")
+```
+
+

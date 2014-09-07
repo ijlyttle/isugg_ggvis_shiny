@@ -1,0 +1,47 @@
+---
+title: "Intermediate Form - I"
+runtime: shiny
+---
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggvis)
+library(shiny)
+```
+
+You'll all have to forgive us as we gave unofficial names todifferent ways of doing things, a patois of sorts. We're sure these are not the best names for this stuff, and it may have other names already, but bear with us.
+
+Some of the layers in ggvis are combinations of `compute_` transformations and base layers of ggvis. For example, `layer_histograms` is a combination of `compute_bin` and `emit_rects` (I'll use `layer_rects` because it's easier for me).
+
+What we have called intermediate form is the output of a `compute_` function.
+
+Let's say you want a histogram, but you want the to flip the coordinates.
+
+First do a `compute_bin`:
+
+```{r}
+df_intermediate <-
+  mtcars %>%
+  compute_bin(~mpg, binwidth = 1)
+
+glimpse(df_intermediate)
+```
+
+For me, the intermediate form is denoted by the underscores at the end of the variable-names.
+
+Now, we can build a regular histogram using `layer_rects`:
+
+```{r}
+df_intermediate %>%
+  ggvis(x = ~xmin_, x2 = ~xmax_, y = ~count_, y2 = 0) %>%
+  layer_rects()
+```
+
+Or we could build a flipped histogram:
+
+```{r}
+df_intermediate %>%
+  ggvis(x = 0, x2 = ~count_, y = ~xmax_, y2 = ~xmin_) %>%
+  layer_rects()
+```
+
