@@ -1,0 +1,66 @@
+---
+title: "piping"
+runtime: shiny
+---
+
+```{r packages, message=FALSE, warning=FALSE, echo=FALSE}
+library(dplyr)
+library(ggvis)
+```
+
+ggvis and dplyr work using a functional approach.  This means that any meaningful task done in ggvis and dplyr consists of a chain of functions.
+
+```{r cocaine}
+head(cocaine, 20)
+table(cocaine$state)
+```
+
+Suppose we are only interested in price of cocaine by state -- purely for economic analysis.
+
+```{r tempvars}
+data = group_by(cocaine, state)
+data = mutate(data, price_by_wt = price/weight)
+data = summarise(data, mean_price_by_wt = mean(price_by_wt))
+data = arrange(data, desc(mean_price_by_wt))
+head(data)
+```
+
+```{r nesting}
+data = 
+  arrange(
+    summarise(
+      mutate(
+        group_by(cocaine, state), 
+        price_by_wt = price/weight
+      ),
+      mean_price_by_wt = mean(price_by_wt)
+    ),
+    desc(mean_price_by_wt)
+  )
+head(data)
+```
+
+```{r piping}
+data = cocaine %>% 
+  group_by(state) %>% 
+  mutate(price_by_wt = price/weight) %>% 
+  summarise(mean_price_by_wt = mean(price_by_wt)) %>% 
+  arrange(desc(mean_price_by_wt)) %>% 
+  mutate(rank = 1:45)
+head(data)
+```
+
+This new convention is being used in dplyr, ggvis and tidyr and is an example of syntactic sugar.
+
+```{r ggvis_example}
+map_data = ggplot2::map_data("state") %>% 
+  left_join(data.frame(state = state.abb, region = tolower(state.name)), by = "region") %>%
+  select(long, lat, group, state) 
+  
+data %>% 
+  left_join(map_data, by = "state") %>%
+  group_by(group) %>% 
+  ggvis(x = ~long, y = ~lat) %>% 
+  layer_paths(fill = ~mean_price_by_wt)
+```
+
