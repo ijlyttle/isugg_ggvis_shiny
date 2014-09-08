@@ -1,0 +1,56 @@
+---
+title: "interactive_ggvis"
+output: html_document
+runtime: shiny
+---
+
+If we generate a document through shiny then we can have an interactive ggvis using shiny.
+
+```{r, warning=FALSE, message=FALSE}
+library(ggvis)
+library(dplyr)
+
+data = cocaine %>% 
+  group_by(state) %>% 
+  mutate(price_by_wt = price/weight) %>% 
+  summarise(mean_price_by_wt = mean(price_by_wt)) %>% 
+  arrange(desc(mean_price_by_wt)) %>% 
+  mutate(rank = 1:45)
+
+map_data = ggplot2::map_data("state") %>% 
+  left_join(data.frame(state = state.abb, region = tolower(state.name)), by = "region") %>%
+  select(long, lat, group, state) 
+
+df = data %>% 
+  left_join(map_data, by = "state") %>%
+  mutate(clicked = 0)
+```
+
+```{r widget, warning=FALSE, message=FALSE}
+widget_example <- function() {
+  shinyApp(
+    ui = fluidPage(
+          ggvisOutput("gg_rank"),
+          ggvisOutput("gg_map")
+    ), #ui
+    
+    server = function(input, output, session) {
+      handle_click = function(data, location, session) {
+        
+      }
+      
+      df %>% group_by(group) %>% ggvis(x = ~long, y = ~lat, key := ~state) %>%
+        layer_paths(fill = ~mean_price_by_wt) %>% 
+        hide_legend("fill") %>%
+        handle_click(on_click = function(data, ...){print(data)}) %>% 
+        bind_shiny("gg_map")
+    } #server
+    
+  ) #shinyAPP
+}
+```
+
+
+```{r runWidget2}
+widget_example()
+```

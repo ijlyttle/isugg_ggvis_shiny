@@ -12,12 +12,12 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 
 ## Some ideas
 
-* use of piping in ggvis (as an introduction)
-* using shiny runtime vs using simple html documents
-* reactive form vs. Winston form
-* axes and legend titles not reactive
+* DONE - use of piping in ggvis (as an introduction)
+* DONE - using shiny runtime vs using simple html documents
+* DONE - reactive form vs. Winston form
+* DONE - axes and legend titles not reactive
 * shiny widgets 
-* `on_click`, `on_hover`
+* in-progress - `on_click`, `on_hover`
 * there's something about subapps (only one level), ggvis sizing issues
 
 ### Ian
