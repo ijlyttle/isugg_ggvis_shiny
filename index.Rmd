@@ -34,4 +34,7 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 
 ### Some (almost) finished apps to show off (more to come)
 
+* https://ijlyttle.shinyapps.io/intro-video/
+* https://ijlyttle.shinyapps.io/random-industry/
+* https://ijlyttle.shinyapps.io/random-video/
 
