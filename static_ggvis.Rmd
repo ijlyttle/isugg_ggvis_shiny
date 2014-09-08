@@ -1,8 +1,5 @@
 ---
 title: "static_ggvis"
-author: "alex shum"
-date: "Sunday, September 07, 2014"
-output: html_document
 ---
 
 ```{r static, message=FALSE, warning=FALSE}
@@ -21,3 +18,14 @@ cocaine %>%
 ```
 
 This is a static HTML document with a ggvis.
+
+If you have no need for shiny-based interactivity, this approach can be useful. 
+
+You can compile your site using a makefile (or jekyll, maybe). Check out the [makefile](https://github.com/rstudio/rmarkdown/blob/gh-pages/Makefile) that RStudio uses to build the RMarkdown site.
+
+The benefits of using "non-shiny" html are:
+
+* no need for a corresponding R session
+* fast page-loads
+* can be hosted at github pages
+
