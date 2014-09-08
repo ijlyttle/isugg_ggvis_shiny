@@ -168,27 +168,27 @@ cocaine %&gt;%
   mutate(rank = 1:45) %&gt;%
   ggvis(x = ~m_price, y = ~state) %&gt;%
   layer_points()</code></pre>
-<p><div id="plot_id754569261-container" class="ggvis-output-container">
-<div id="plot_id754569261" class="ggvis-output"></div>
+<p><div id="plot_id752473013-container" class="ggvis-output-container">
+<div id="plot_id752473013" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id754569261_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id754569261" data-renderer="svg">SVG</a>
+<a id="plot_id752473013_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id752473013" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id754569261_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id754569261" data-renderer="canvas">Canvas</a>
+<a id="plot_id752473013_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id752473013" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id754569261_download" class="ggvis-download" data-plot-id="plot_id754569261">Download</a>
+<a id="plot_id752473013_download" class="ggvis-download" data-plot-id="plot_id752473013">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id754569261_spec = {
+var plot_id752473013_spec = {
 	"data" : [
 		{
 			"name" : "cocaine %&gt;% mutate(price_wt = price/weight) %&gt;% group_by(state) %&gt;%     summarise(m_price = mean(price_wt)) %&gt;% arrange(desc(m_price)) %&gt;%     mutate(rank = 1:45)0",
@@ -309,9 +309,17 @@ var plot_id754569261_spec = {
 	},
 	"handlers" : null
 };
-ggvis.getPlot("plot_id754569261").parseSpec(plot_id754569261_spec);
+ggvis.getPlot("plot_id752473013").parseSpec(plot_id752473013_spec);
 </script></p>
 <p>This is a static HTML document with a ggvis.</p>
+<p>If you have no need for shiny-based interactivity, this approach can be useful.</p>
+<p>You can compile your site using a makefile (or jekyll, maybe). Check out the <a href="https://github.com/rstudio/rmarkdown/blob/gh-pages/Makefile">makefile</a> that RStudio uses to build the RMarkdown site.</p>
+<p>The benefits of using “non-shiny” html are:</p>
+<ul>
+<li>no need for a corresponding R session</li>
+<li>fast page-loads</li>
+<li>can be hosted at github pages</li>
+</ul>
 
 <hr />
 <div class="footer">
