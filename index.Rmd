@@ -4,7 +4,9 @@ author: "Alex Shum and Ian Lyttle"
 runtime: shiny
 ---
 
-This is a site of vignttes of stuff we learned this summer using `ggvis` and `shiny` to develop apps in support of an online course in introductory applied statistics.
+This is a site of half-baked vignettes of stuff we learned this summer using `ggvis` and `shiny` to develop apps in support of an online course in introductory applied statistics.
+
+Some of these things are already in the shiny and ggvis documentation, but that we managed not well enough.
 
 It should not be necessary to point out that we are big fans of both packages, and that what we learned is part of the joy and frustation of working with software as it is being developed.
 
@@ -29,3 +31,7 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 * DONE - using the intermediate form to flip axes on a histogram 
 * DONE - don't use more than a few thousand geometries (yet)
 * DONE - shinyBS!
+
+### Some (almost) finished apps to show off (more to come)
+
+
