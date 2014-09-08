@@ -75,12 +75,10 @@ rct_color <- reactive({
   
 })
 
-reactive({
+gg_cars <-
   mtcars %>%
   ggvis(x = ~wt, y = ~mpg) %>%
   layer_points(fill := rct_color, stroke := rct_color) 
-}) %>% 
-  bind_shiny("gg_cars")
 ```
 
 ```{r}
@@ -93,13 +91,12 @@ button_modal(
 bsModal(
   "modal_window_shiny", 
   title = "Moar Shiny!",
-  trigger = "modal_button_shiny"
+  trigger = "modal_button_shiny",
+  select_color,
+  HTML(knit_print.ggvis(gg_cars)) # this took a *lot* of experimentation
 )
 ```
 
-```{r}
-select_color
-ggvisOutput("gg_cars")
-```
+
 
 
