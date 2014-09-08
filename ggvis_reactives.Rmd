@@ -1,0 +1,109 @@
+---
+title: "ggvis and reactives"
+runtime: shiny
+---
+
+When using ggvis with shiny there are two ways to pass a reactive data source to ggvis.  This first method does not take advantage of ggvis integration with shiny:
+
+```{r widget1, warning=FALSE, message=FALSE}
+library(ggvis)
+library(shiny)
+library(dplyr)
+
+widget_example <- function() {
+  shinyApp(
+    ui = fluidPage(
+      responsive = FALSE,
+      fluidRow(
+        column(
+          width = 3, 
+          wellPanel(
+            #control elements
+            actionButton("gen_data", "Generate Data!")
+          )
+        ),
+         
+        column(
+          width = 9,
+          ggvisOutput("gg_vis")
+        )
+      )  
+    ), #ui
+    
+    server = function(input, output, session) {
+      rct_gen_data = reactive({
+        input$gen_data
+        
+        isolate({
+          data.frame(x = rnorm(100, 0, 1), y = rnorm(100, 0, 5))
+        })
+      })
+
+      reactive({
+        data = rct_gen_data()
+        
+        data %>% ggvis(x = ~x, y = ~y) %>% 
+          layer_points() %>% 
+          add_axis("x", title = paste0("rnorm(0,1) with mean: ", mean(data$x))) %>% 
+          add_axis("y", title = paste0("rnorm(0,5) with mean: ", mean(data$y)))
+      }) %>% bind_shiny("gg_vis")
+    } #server
+    
+  ) #shinyAPP
+}
+```
+
+```{r runWidget1}
+widget_example()
+```
+
+This second method takes advantage of ggvis integration with shiny by passing a reactive object directly into ggvis.  However this method is still a bit restrictive with things like axis titles.
+
+```{r widget2, warning=FALSE, message=FALSE}
+library(ggvis)
+library(shiny)
+library(dplyr)
+
+widget_example <- function() {
+  shinyApp(
+    ui = fluidPage(
+      responsive = FALSE,
+      fluidRow(
+        column(
+          width = 3, 
+          wellPanel(
+            #control elements
+            actionButton("gen_data", "Generate Data!")
+          )
+        ),
+         
+        column(
+          width = 9,
+          ggvisOutput("gg_vis")
+        )
+      )  
+    ), #ui
+    
+    server = function(input, output, session) {
+      rct_gen_data = reactive({
+        input$gen_data
+        
+        isolate({
+          data.frame(x = rnorm(100, 0, 1), y = rnorm(100, 0, 5))
+        })
+      })
+        rct_gen_data %>% 
+        ggvis(x = ~x, y = ~y) %>% 
+          layer_points() %>% 
+          add_axis("x", "static x title") %>%
+          add_axis("y", "static y title") %>%
+          bind_shiny("gg_vis")
+    } #server
+    
+  ) #shinyAPP
+}
+```
+
+```{r runWidget2}
+widget_example()
+```
