@@ -1,0 +1,31 @@
+---
+title: "static_ggvis"
+---
+
+```{r static, message=FALSE, warning=FALSE}
+library(ggvis)
+library(dplyr)
+
+cocaine %>% 
+  mutate(price_wt = price/weight) %>% 
+  group_by(state) %>% 
+  summarise(m_price = mean(price_wt)) %>% 
+  arrange(desc(m_price)) %>%
+  mutate(rank = 1:45) %>%
+  ggvis(x = ~m_price, y = ~state) %>%
+  layer_points()
+
+```
+
+This is a static HTML document with a ggvis.
+
+If you have no need for shiny-based interactivity, this approach can be useful. 
+
+You can compile your site using a makefile (or jekyll, maybe). Check out the [makefile](https://github.com/rstudio/rmarkdown/blob/gh-pages/Makefile) that RStudio uses to build the RMarkdown site.
+
+The benefits of using "non-shiny" html are:
+
+* no need for a corresponding R session
+* fast page-loads
+* can be hosted at github pages
+
