@@ -1,0 +1,20 @@
+---
+title: "Building a shiny-rmd site"
+runtime: shiny
+---
+
+This is covered at the [rmarkdown](http://rmarkdown.rstudio.com/html_document_format.html) site, but here are a few things you can do to make it easier to build a shiny-rmarkdown site (A lot of this would be applicable to an html-rmarkdown site).
+
+Each file has a yaml header. You can standardize everything in `output:` and below by using a 
+Here are the contents of the `_output.yaml` file for this repository (ugly but reproducible):
+
+```{r}
+txt <- readLines(file("_output.yaml", "r"))
+```
+
+The `theme:` item can be used to choose from a set of pre-defined bootstrap themes.
+
+The `in_header:` item is a great place for snippets of css and javascript.
+
+One thing to be careful of - this applies for shiny, but may also be true for non-shiny html output - all of your Rmd files should be in the same directory, likely the root directory of your project.
+
