@@ -1,0 +1,17 @@
+---
+title: "html page"
+---
+
+So this is an html page.
+
+The [rmarkdown site](https://rmarkdown.rstudio.com) [(source)](https://github.com/rstudio/rmarkdown/tree/gh-pages) uses a makefile to compile their site, then push it to github pages.
+
+```{r message=FALSE, warning=FALSE}
+library(ggvis)
+```
+
+```{r}
+mtcars %>%
+  ggvis(x = ~wt, y = ~mpg) %>%
+  layer_points()
+```
