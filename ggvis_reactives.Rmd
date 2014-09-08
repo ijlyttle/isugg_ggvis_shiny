@@ -64,7 +64,7 @@ library(ggvis)
 library(shiny)
 library(dplyr)
 
-widget_example <- function() {
+widget_example2 <- function() {
   shinyApp(
     ui = fluidPage(
       responsive = FALSE,
@@ -92,11 +92,12 @@ widget_example <- function() {
           data.frame(x = rnorm(100, 0, 1), y = rnorm(100, 0, 5))
         })
       })
+      
         rct_gen_data %>% 
         ggvis(x = ~x, y = ~y) %>% 
           layer_points() %>% 
-          add_axis("x", "static x title") %>%
-          add_axis("y", "static y title") %>%
+          add_axis("x", title = "static x title") %>%
+          add_axis("y", title = "static y title") %>%
           bind_shiny("gg_vis")
     } #server
     
@@ -105,5 +106,11 @@ widget_example <- function() {
 ```
 
 ```{r runWidget2}
-widget_example()
+widget_example2()
 ```
+
+Method A
+--------
+
+Method B
+--------
