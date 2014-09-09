@@ -9,7 +9,9 @@ library(dplyr)
 library(ggvis)
 library(shiny)
 ```
-  
+
+There is support for data-time in ggvis, but there are "gotchas".
+
 Let's take some time-series data:
 
 ```{r}

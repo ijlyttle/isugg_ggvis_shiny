@@ -32,6 +32,23 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 * DONE - don't use more than a few thousand geometries (yet)
 * DONE - shinyBS!
 
+### ggvis
+
+* [Piping](piping.Rmd)
+* [Datetimes](scale_datetime.Rmd)
+* [Number of Marks](number_of_marks.Rmd)
+* [layer_images()](layer_images.Rmd)
+* [Intermediate - Compute](intermediate_compute.Rmd)
+* [Intermediate - Transform](intermediate_transform.Rmd)
+
+### shiny
+
+* [ggvis and Reactives](ggvis_reactives.Rmd)
+* [Widgets](interactive_ggvis.Rmd)
+* [Building a shiny-rmarkdown site](building.Rmd)
+* [Building a static-rmarkdown site](http://ijlyttle.github.io/isugg_ggvis_shiny/static_ggvis.html)
+* [shinyBS!](shinyBS.Rmd)
+
 ### Some (almost) finished apps to show off (more to come)
 
 * https://ijlyttle.shinyapps.io/intro-video/
