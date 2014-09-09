@@ -10,11 +10,17 @@ Here are the contents of the `_output.yaml` file for this repository (ugly but r
 
 ```{r}
 txt <- readLines(file("_output.yaml", "r"))
+
+txt
 ```
 
-The `theme:` item can be used to choose from a set of pre-defined bootstrap themes.
+`theme:` can be used to choose from a set of pre-defined bootstrap themes.
 
-The `in_header:` item is a great place for snippets of css and javascript.
+`in_header:` great place for snippets of css and javascript.
+
+`before_body:` nav-bars, and the like.
+
+`after-body:` paying tribute to RStudio and bootstrap.
 
 One thing to be careful of - this applies for shiny, but may also be true for non-shiny html output - all of your Rmd files should be in the same directory, likely the root directory of your project.
 

@@ -4,7 +4,7 @@ author: "Alex Shum and Ian Lyttle"
 runtime: shiny
 ---
 
-This is a site of half-baked vignettes of stuff we learned this summer using `ggvis` and `shiny` to develop apps in support of an online course in introductory applied statistics.
+This is a set of half-baked vignettes of stuff we learned this summer using `ggvis` and `shiny` to develop apps in support of an online course in introductory applied statistics.
 
 Some of these things are already in the shiny and ggvis documentation, but that we managed not well enough.
 
