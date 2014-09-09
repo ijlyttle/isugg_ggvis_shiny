@@ -9,7 +9,7 @@ library(ggvis)
 library(shiny)
 ```
 
-One of the things we wanted to do was to allow people to make scatter plots, but to choose the variables themselves.
+One of the things we wanted to do was to allow people to make scatter plots, but to choose the variables themselves, via shiny.
 
 One way we found to make that easier was to treat the selection of the variables a little bit like a `compute_` transformation.
 
@@ -58,6 +58,12 @@ reactive({
 }) %>% 
   bind_shiny("gg_out")
 ```
+
+We select the columns into a dataframe where rename (thus know) the column names. There are other ways to do this, for example, using the `prop()` function.
+
+Another thing to keep in mind is that we have wrapped the entire ggvis in a `reactive()` function. This also allows us to make the axis titles (and legend titles) reactive, but at a price.
+
+This is covered in more detail in [ggvis and Reactives](ggvis_reactives.Rmd).
 
 ```{r}
 select_x

@@ -10,6 +10,8 @@ library(ggvis)
 library(shiny)
 ```
 
+One of the things we have heard from RStudio is that ggvis' performance starts to slow down once you put more than "a few thousand" marks into a plot. This is one of the things they want to optimize, once they have more of the base functionality working. Here's a demo that kind-of shows the slowdown.
+
 ```{r echo=FALSE}
 df_intensity <- dpcDataSE::conf_room_bumper$df_intensity
 npx <- 128

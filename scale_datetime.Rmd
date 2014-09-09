@@ -10,7 +10,7 @@ library(ggvis)
 library(shiny)
 ```
 
-There is support for data-time in ggvis, but there are "gotchas".
+There is support for datetimes in ggvis, but there are "gotchas".
 
 Let's take some time-series data:
 

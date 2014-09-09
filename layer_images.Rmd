@@ -16,7 +16,7 @@ library(ggvis)
 library(shiny)
 ```
 
-We have a dataframe, `df_intensity`
+We have a dataframe, `df_intensity` that stores the intensity of every pixel in a greyscale image. Pixels with intensity of zero are black, pixels with intensity of one are white.
 
 ```{r}
 df_intensity <- dpcDataSE::conf_room_bumper$df_intensity
@@ -55,7 +55,7 @@ df_int %>%
   set_options(height = 288, width = 256)
 ```
 
-This is a bit-of-a-hack, but displays **much** quicker:
+This is a bit-of-a-hack, but displays **much** quicker. One thing to keep in mind is that the URL has to be a publicly-accesible URL, not a local file. Luckily, I can use github pages (until someone yells at me).
 
 ```{r}
 df_img <- 
