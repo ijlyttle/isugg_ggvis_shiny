@@ -6,6 +6,7 @@ runtime: shiny
 ```{r packages, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggvis)
+library(maps)
 ```
 
 ggvis and dplyr work using a functional approach.  This means that any meaningful task done in ggvis and dplyr consists of a chain of functions.
