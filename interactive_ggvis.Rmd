@@ -1,10 +1,11 @@
 ---
 title: "interactive_ggvis"
-output: html_document
 runtime: shiny
 ---
 
 If we generate a document through shiny then we can have an interactive ggvis using shiny.
+
+>> Could we rename this to Shiny Widgets, and show how we can create shiny functions that use runtime arguements? <<
 
 ```{r, warning=FALSE, message=FALSE}
 library(ggvis)
