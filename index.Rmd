@@ -8,7 +8,7 @@ This is a set of half-baked vignettes of stuff we learned this summer using `ggv
 
 Some of these things are already in the shiny and ggvis documentation, but that we managed not well enough.
 
-It should not be necessary to point out that we are big fans of both packages, and that what we learned is part of the joy and frustation of working with software as it is being developed.
+It should not be necessary to point out that we are big fans of both packages, and that what we learned is part of the joy and frustation of working with software, especially as it is being developed.
 
 We'd like to thank RStudio, and Winston Chang in particular, for their patience in answering questions, fixing bugs (and pointing out when they are not bugs), and gracious advice.
 
