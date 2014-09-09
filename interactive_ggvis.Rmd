@@ -24,26 +24,64 @@ map_data = ggplot2::map_data("state") %>%
 df = data %>% 
   left_join(map_data, by = "state") %>%
   mutate(clicked = 0)
+
+df[df$state == "WA",]$clicked = 1
+df$clicked = as.factor(df$clicked)
+df = df[complete.cases(df),]
 ```
 
 ```{r widget, warning=FALSE, message=FALSE}
+
 widget_example <- function() {
   shinyApp(
-    ui = fluidPage(
-          ggvisOutput("gg_rank"),
-          ggvisOutput("gg_map")
+    ui = fluidPage(responsive = FALSE,
+            fluidRow(
+              column(width = 6,
+                ggvisOutput("gg_map")
+              ),
+              
+              column(width = 6,
+                ggvisOutput("gg_rank")
+              )
+            )
     ), #ui
     
     server = function(input, output, session) {
-      handle_click = function(data, location, session) {
+      selected = reactiveValues(group = 56)
+      
+      rct_get_data = reactive({
+        df$clicked = 0
+        df[df$group == selected$group,]$clicked = 1
         
+        df
+      })
+      
+      rct_get_data2 = reactive({ 
+        geo = rct_get_data()
+        selected_state = unique(geo[geo$clicked == 1,]$state)
+        
+        data$selected = 0
+        data[data$state == selected_state,]$selected = 1
+        data$selected = as.factor(data$selected)
+        
+        data
+      })
+      
+      click = function(data, ...) {
+        selected$group = data$group
       }
       
-      df %>% group_by(group) %>% ggvis(x = ~long, y = ~lat, key := ~state) %>%
-        layer_paths(fill = ~mean_price_by_wt) %>% 
+      #map
+      rct_get_data %>% ggvis(x = ~long, y = ~lat) %>% group_by(group) %>%
+        layer_paths(fill = ~clicked) %>% 
         hide_legend("fill") %>%
-        handle_click(on_click = function(data, ...){print(data)}) %>% 
+        handle_click(on_click = click) %>% 
         bind_shiny("gg_map")
+      
+      #dotplot
+      rct_get_data2 %>% ggvis(x = ~mean_price_by_wt, y = ~state) %>%
+        layer_points(fill = ~selected) %>% hide_legend("fill") %>% bind_shiny("gg_rank")
+      
     } #server
     
   ) #shinyAPP
