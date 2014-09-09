@@ -109,6 +109,13 @@ widget_example2 <- function() {
 widget_example2()
 ```
 
+ggvis is written in such a way that you can either supply it with the name of "the thing", such as a data frame, or the name of a reactive that returns "the thing".
+
+The biggest use-case is for reactive data frames, but there are other things that can be reactive, too. Some things can't be reactive (yet), like axis and legend titles, unless you wrap the whole ggvis in a reactive.
+
+If you wrap the whole thing in a reactive, the reactives within need to return "the thing", and not just be the name of the (inside) reactive. Clear?
+
+
 Method A
 --------
 
