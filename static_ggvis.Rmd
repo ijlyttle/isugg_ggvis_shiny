@@ -1,5 +1,5 @@
 ---
-title: "static_ggvis"
+title: "Building a static-rmarkdown site"
 ---
 
 ```{r static, message=FALSE, warning=FALSE}
