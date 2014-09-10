@@ -149,7 +149,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <ul class="dropdown-menu">
 
     <li><a href="http://ijlyttle.shinyapps.io/isugg_ggvis_shiny/ggvis_reactives.Rmd">ggvis and Reactives</a></li>
-    <li><a href="http://ijlyttle.shinyapps.io/isugg_ggvis_shiny/interactive_ggvis.Rmd">Widgets</a></li>
+    <li><a href="http://ijlyttle.shinyapps.io/isugg_ggvis_shiny/shiny_widgets.Rmd">Widgets</a></li>
     <li><a href="http://ijlyttle.shinyapps.io/isugg_ggvis_shiny/building.Rmd">Building a shiny-rmarkdown site</a></li>    
     <li><a href="static_ggvis.html">
       Building a static-rmarkdown site    
@@ -180,27 +180,27 @@ cocaine %&gt;%
   mutate(rank = 1:45) %&gt;%
   ggvis(x = ~m_price, y = ~state) %&gt;%
   layer_points()</code></pre>
-<p><div id="plot_id942820038-container" class="ggvis-output-container">
-<div id="plot_id942820038" class="ggvis-output"></div>
+<p><div id="plot_id175694839-container" class="ggvis-output-container">
+<div id="plot_id175694839" class="ggvis-output"></div>
 <div class="plot-gear-icon">
 <nav class="ggvis-control">
 <a class="ggvis-dropdown-toggle" title="Controls" onclick="return false;"></a>
 <ul class="ggvis-dropdown">
 <li>
 Renderer: 
-<a id="plot_id942820038_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id942820038" data-renderer="svg">SVG</a>
+<a id="plot_id175694839_renderer_svg" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id175694839" data-renderer="svg">SVG</a>
  | 
-<a id="plot_id942820038_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id942820038" data-renderer="canvas">Canvas</a>
+<a id="plot_id175694839_renderer_canvas" class="ggvis-renderer-button" onclick="return false;" data-plot-id="plot_id175694839" data-renderer="canvas">Canvas</a>
 </li>
 <li>
-<a id="plot_id942820038_download" class="ggvis-download" data-plot-id="plot_id942820038">Download</a>
+<a id="plot_id175694839_download" class="ggvis-download" data-plot-id="plot_id175694839">Download</a>
 </li>
 </ul>
 </nav>
 </div>
 </div>
 <script type="text/javascript">
-var plot_id942820038_spec = {
+var plot_id175694839_spec = {
 	"data" : [
 		{
 			"name" : "cocaine %&gt;% mutate(price_wt = price/weight) %&gt;% group_by(state) %&gt;%     summarise(m_price = mean(price_wt)) %&gt;% arrange(desc(m_price)) %&gt;%     mutate(rank = 1:45)0",
@@ -321,7 +321,7 @@ var plot_id942820038_spec = {
 	},
 	"handlers" : null
 };
-ggvis.getPlot("plot_id942820038").parseSpec(plot_id942820038_spec);
+ggvis.getPlot("plot_id175694839").parseSpec(plot_id175694839_spec);
 </script></p>
 <p>This is a static HTML document with a ggvis.</p>
 <p>If you have no need for shiny-based interactivity, this approach can be useful.</p>
