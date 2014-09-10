@@ -4,7 +4,7 @@ author: "Alex Shum and Ian Lyttle"
 runtime: shiny
 ---
 
-This summer we worked together to build an online course to teach applied statistics within Schneider Electric. Part of what motivated our approach was seeing Chris Wild’s approach to teaching statistics (https://www.stat.auckland.ac.nz/~wild/talks/09.USCOTS.wild.html), which was brought to our attention by Thomas Lumley, during his visit to Iowa State earlier this year. 
+This summer we worked together to build an online course to teach applied statistics within Schneider Electric. Part of what motivated our approach was seeing [Chris Wild’s approach](https://www.stat.auckland.ac.nz/~wild/talks/09.USCOTS.wild.html) to teaching statistics, which was brought to our attention by Thomas Lumley, during his visit to Iowa State earlier this year. 
 
 The thought was to build interactive web applications using ggvis and shiny. This was particularly challenging because, as you know, ggvis is still very much being developed. Shiny also underwent big changes this summer, as we can now embed shiny applications in rmarkdown documents. It was very exciting to come into work and to have new capabilities appear on github on a near-daily basis.
 
