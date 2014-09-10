@@ -1,5 +1,5 @@
 ---
-title: "piping"
+title: "Piping"
 runtime: shiny
 ---
 
@@ -50,6 +50,8 @@ data = cocaine %>%
   mutate(rank = 1:45)
 head(data)
 ```
+
+Using the pipe allows us to write the code in a way that might better follow our thought process, as a series of sequential steps.
 
 This new convention is being used in dplyr, ggvis and tidyr and is an example of syntactic sugar.
 

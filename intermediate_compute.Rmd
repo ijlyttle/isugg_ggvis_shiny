@@ -1,5 +1,5 @@
 ---
-title: "Intermediate Form - I"
+title: "Intermediate Form - Compute"
 runtime: shiny
 ---
 
@@ -11,7 +11,7 @@ library(shiny)
 
 You'll all have to forgive us as we gave unofficial names todifferent ways of doing things, a patois of sorts. We're sure these are not the best names for this stuff, and it may have other names already, but bear with us.
 
-Some of the layers in ggvis are combinations of `compute_` transformations and base layers of ggvis. For example, `layer_histograms` is a combination of `compute_bin` and `emit_rects` (I'll use `layer_rects` because it's easier for me).
+Some of the layers in ggvis are compund layers, combinations of `compute_` transformations and base layers of ggvis. For example, `layer_histograms` is a combination of `compute_bin` and `emit_rects` (I'll use `layer_rects` because it's easier for me).
 
 What we have called intermediate form is the output of a `compute_` function.
 

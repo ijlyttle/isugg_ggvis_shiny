@@ -1,5 +1,5 @@
 ---
-title: "shinyBS"
+title: "shinyBS!"
 runtime: shiny
 ---
 
@@ -20,7 +20,7 @@ devtools::install_github("ebailey78/shinyBS")
 
 Here's a live demo: (http://spark.rstudio.com/johnharrison/shinyBS-Demo/)
 
-To get this to work in the shiny-Rmd environment, I had to make an adjustment. However, this adjustment removes the dependency on the shiny backend.
+To get modal buttons to work in the shiny-Rmd environment, I had to make an adjustment. However, this adjustment removes the dependency on the shiny backend.
 
 ```{r}
 button_modal <-function (id, idModal, class = "btn", icon = NULL, label = "") 

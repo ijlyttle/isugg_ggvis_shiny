@@ -115,9 +115,18 @@ The biggest use-case is for reactive data frames, but there are other things tha
 
 If you wrap the whole thing in a reactive, the reactives within need to return "the thing", and not just be the name of the (inside) reactive. Clear?
 
+To summarize, there are two ways of building a ggvis within shiny:
 
-Method A
---------
+##### Wrapping the ggvis in a `reactive({})`
 
-Method B
---------
+  - Reactives inside supply the "the thing", e.g. `my_reactive_data() %>%`
+  - This gives you the most control
+  - You can make axis and legend titles reactive
+  - However, every time something changes, shiny has to rebuild the entire plot
+
+##### Building the ggvis using reactive arguements
+
+  - Reactives inside supply the name of the reactive, e.g. `my_reactive_data %>%`
+  - This gives best performance, as shiny rebuilds only those parts of the plot it needs to
+  - You can  *not* make axis and legend titles reactive (yet)
+  - You get transitions between states - turn off using `set_options(duration = 0)`
