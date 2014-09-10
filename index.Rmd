@@ -4,33 +4,13 @@ author: "Alex Shum and Ian Lyttle"
 runtime: shiny
 ---
 
-This is a set of half-baked vignettes of stuff we learned this summer using `ggvis` and `shiny` to develop apps in support of an online course in introductory applied statistics.
+This summer we worked together to build an online course to teach applied statistics within Schneider Electric. Part of what motivated our approach was seeing Chris Wild’s approach to teaching statistics (https://www.stat.auckland.ac.nz/~wild/talks/09.USCOTS.wild.html), which was brought to our attention by Thomas Lumley, during his visit to Iowa State earlier this year. 
 
-Some of these things are already in the shiny and ggvis documentation, but that we managed not well enough.
+The thought was to build interactive web applications using ggvis and shiny. This was particularly challenging because, as you know, ggvis is still very much being developed. Shiny also underwent big changes this summer, as we can now embed shiny applications in rmarkdown documents. It was very exciting to come into work and to have new capabilities appear on github on a near-daily basis.
 
-It should not be necessary to point out that we are big fans of both packages, and that what we learned is part of the joy and frustation of working with software, especially as it is being developed.
+This talk will have a couple of parts. The first part will be to show you some of the more interesting aspects (at least we think so) among the new capabilities of ggvis and shiny. We will go over some of the things we found out the hard way, and some hacks that may be useful. The second part will be to show off some of the apps that we made this summer - some are done, some are still being finished. 
 
-We'd like to thank RStudio, and Winston Chang in particular, for their patience in answering questions, fixing bugs (and pointing out when they are not bugs), and gracious advice.
-
-## Some ideas
-
-* DONE - use of piping in ggvis (as an introduction)
-* DONE - using shiny runtime vs using simple html documents
-* DONE - reactive form vs. Winston form
-* DONE - axes and legend titles not reactive
-* shiny widgets 
-* in-progress - `on_click`, `on_hover`
-* there's something about subapps (only one level), ggvis sizing issues
-
-### Ian
-
-* DONE - `layer_images` as a replacement for `geom_raster`
-* DONE - how to include css in your Rmd website
-* DONE - date-times on axes
-* DONE - using an intermediate form as a workaround to non-standard evaluation
-* DONE - using the intermediate form to flip axes on a histogram 
-* DONE - don't use more than a few thousand geometries (yet)
-* DONE - shinyBS!
+We don’t have slides - instead, we have a collection of half-baked vignettes: 
 
 ### ggvis
 
@@ -56,3 +36,4 @@ We'd like to thank RStudio, and Winston Chang in particular, for their patience 
 * https://ijlyttle.shinyapps.io/random-industry/
 * https://ijlyttle.shinyapps.io/random-video/
 
+We'd like to thank RStudio, and Winston Chang in particular, for their patience in answering questions, fixing bugs (and pointing out when they are not bugs), and gracious advice.
