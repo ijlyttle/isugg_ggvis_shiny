@@ -25,7 +25,7 @@ We don’t have slides - instead, we have a collection of half-baked vignettes:
 ### shiny
 
 * [ggvis and Reactives](ggvis_reactives.Rmd)
-* [Widgets](interactive_ggvis.Rmd)
+* [Widgets](shiny_widgets.Rmd)
 * [Building a shiny-rmarkdown site](building.Rmd)
 * [Building a static-rmarkdown site](http://ijlyttle.github.io/isugg_ggvis_shiny/static_ggvis.html)
 * [shinyBS!](shinyBS.Rmd)

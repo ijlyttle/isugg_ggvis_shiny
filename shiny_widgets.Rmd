@@ -1,5 +1,5 @@
 ---
-title: "interactive_ggvis"
+title: "Widgets"
 runtime: shiny
 ---
 
