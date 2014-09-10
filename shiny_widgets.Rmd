@@ -3,10 +3,40 @@ title: "interactive_ggvis"
 runtime: shiny
 ---
 
+Instead of writing a shiny app in a server.R and ui.R file with a hardcoded dataset, we can use a shiny widget.  Shiny widgets are a relatively new feature that let us treat a shiny app like a function with a dataset as an input parameter.  The following is a simple shiny widget that plots the first two columns of a dataset:
+
+```{r, warning=FALSE, message=FALSE}
+library(ggvis)
+library(shiny)
+widget_with_input = function(dataset) {
+    shinyApp(
+    ui = fluidPage(responsive = FALSE,
+            fluidRow(
+              ggvisOutput("ggvis_plot")
+            )
+    ), #ui
+    
+    server = function(input, output, session) {
+      rct_get_data = reactive({
+        data.frame(x = dataset[,1], y = dataset[,2])
+      })
+      
+      rct_get_data %>% ggvis(x = ~x, y = ~y) %>% layer_points() %>% bind_shiny("ggvis_plot")
+    } #server
+    
+  ) #shinyAPP
+}
+```
+
+```{r plot1, warning=FALSE, message=FALSE}
+widget_with_input(mtcars)
+```
+
+```{r plot2, warning=FALSE, message=FALSE}
+widget_with_input(cocaine)
+```
+
 If we generate a document through shiny then we can have an interactive ggvis using shiny.
-
->> Could we rename this to Shiny Widgets, and show how we can create shiny functions that use runtime arguements? <<
-
 ```{r, warning=FALSE, message=FALSE}
 library(ggvis)
 library(dplyr)
@@ -32,8 +62,7 @@ df = df[complete.cases(df),]
 ```
 
 ```{r widget, warning=FALSE, message=FALSE}
-
-widget_example <- function() {
+widget_example = function() {
   shinyApp(
     ui = fluidPage(responsive = FALSE,
             fluidRow(
