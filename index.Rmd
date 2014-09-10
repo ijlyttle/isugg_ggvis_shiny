@@ -20,7 +20,6 @@ We don’t have slides - instead, we have a collection of half-baked vignettes:
 * [layer_images()](layer_images.Rmd)
 * [Intermediate - Compute](intermediate_compute.Rmd)
 * [Intermediate - Transform](intermediate_transform.Rmd)
-* Need to put something together about strokeOpacity and Firefox.
 
 ### shiny
 

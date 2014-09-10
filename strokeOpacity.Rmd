@@ -1,0 +1,25 @@
+---
+title: strokeOpacity
+runtime: shiny
+---
+
+```{r warning=FALSE, message=FALSE}
+library(ggvis)
+library(dplyr)
+```
+
+```{r}
+mtcars_mod <- 
+  mtcars %>%
+  mutate(fgear = factor(gear), fcyl = factor(cyl))
+  
+mtcars_mod %>%
+  group_by(fgear, fcyl) %>%
+  summarize(count = n()) %>%
+  ggvis(x = ~fgear, y = ~fcyl, fill = ~count) %>%
+  layer_rects(
+    width = band(), 
+    height = band(),
+    strokeWidth := 0)
+```
+
